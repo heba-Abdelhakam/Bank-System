@@ -15,6 +15,7 @@ typedef struct client{
     int NationalID;
     int Age;
     int CountID;
+	string guardian_id;
 
 }Client;
 
