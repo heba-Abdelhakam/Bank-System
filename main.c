@@ -48,10 +48,13 @@ int main()
     int is_valid_age = Check_Age(age);
 	if (is_valid_age){
 		printf("\nsuitable age");
-		//char guardian_id[MAX_SIZE] = "";
 	}
 	else {
-		char *guardian_id = input_guardian_id();
+		char guardian_id[MAX_SIZE] ; // this can not be a pointer as it will not have an end (\n)
+		char guardian_id2[MAX_SIZE];
+		input_guardian_id(guardian_id);
+		input_guardian_id(guardian_id2);
+		printf("%s , %s",guardian_id, guardian_id2);
 		//add it to the struct
 	}
     getch();

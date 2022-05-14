@@ -204,17 +204,20 @@ int Check_Age(int age){
     }
 }
 
-char* input_guardian_id(void){
+void input_guardian_id(char* guardian_id){
+	// you can return a pointer (but allocate the string in heap (not efficient cuz you will want to remove it)
+	// you can return a pointer (and make it static (you will the change the string each time you call the funciton))
+	// you can pass a pointer to the funciton and then assign the string in this pointer 
 	/*
-	INPUT : void
+	INPUT : a pointer to the string
 	OUTPUT : the guardian ID as a string
 	FUNCITON : takes the guardian ID as input from the user
 	*/
-	static char guardian_id[MAX_SIZE];
+	// char *guardian_id; // can not be static as it will be the same each time you call the funciton
 	 printf("\nYou must have a guardian...");
      printf("\nPlease enter your guardian ID : ");
      scanf("%s",guardian_id);
-	 return guardian_id;
+	 //return guardian_id;
 }
 
 

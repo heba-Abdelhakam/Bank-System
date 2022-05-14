@@ -26,7 +26,7 @@ void Generate_Pass(int N);
 int Create_BankID(int bank_id);
 int Calc_Age(int birth_year);
 int Check_Age(int age);
-char* input_guardian_id(void);
+void input_guardian_id(char* guardian_id);
 
 //not yet implemented
 //char* get_guardian_id(char* guardian_id);
