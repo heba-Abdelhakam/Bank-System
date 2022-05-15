@@ -7,7 +7,9 @@
 #include<windows.h>
 #include<string.h>
 #include <time.h>
-#include"../project/functions.h"
+#include"functions.h"
+#include"admin_functions.h"
+
 
 // Execute Functions //
 int main()
@@ -58,8 +60,11 @@ int main()
 		//add it to the struct
 	}
     getch();
-	
-
+	Client* ptr ;//= (Client*)malloc(sizeof(Client));
+	 ptr = create_new_account();
+	//ptr = (Client*)malloc(sizeof(Client));
+	//ptr->Age = 22;
+	printf("\n%d this is the age",ptr->Age);
 
     return 0;
 }

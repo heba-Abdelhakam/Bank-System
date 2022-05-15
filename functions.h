@@ -1,3 +1,7 @@
+#ifndef FUNCTIONS_H_
+#define FUNCTIONS_H_
+
+
 // Define Functions //
 #include<stdio.h>
 #include<stdlib.h>
@@ -13,7 +17,17 @@
 #define MAX_SIZE 20
 #define MAX_SIZE_NAME 70
 
+typedef struct client{
+    char FullName[MAX_SIZE_NAME];
+    char Address[MAX_SIZE];
+    char NationalID[MAX_SIZE];
+	char guardian_id[MAX_SIZE];
+    int Age;
+    int CountID;
+	char password[MAX_SIZE];
+	
 
+}Client;
 
 
 
@@ -31,8 +45,10 @@ void input_guardian_id(char* guardian_id);
 //not yet implemented
 //char* get_guardian_id(char* guardian_id);
 //implemented
-int choose_features_admin(void);
+int admin_window(void);
 int check_valid_id(char* id);
 //Client* create_new_account(void);
 char* get_full_name(void); // to be edited
 char* get_address(void);
+
+#endif

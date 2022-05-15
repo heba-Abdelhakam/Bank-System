@@ -1,5 +1,5 @@
 #include "functions.h"
-
+/*
 typedef struct client{
     char FullName[MAX_SIZE_NAME];
     char Address[MAX_SIZE];
@@ -11,7 +11,7 @@ typedef struct client{
 	
 
 }Client;
-
+*/
 void gotoxy(int x, int y){
     COORD c = { x, y };  
     SetConsoleCursorPosition(  GetStdHandle(STD_OUTPUT_HANDLE) , c);
@@ -76,8 +76,7 @@ void Admin(){
             LoginAdmin(username, password);
 			
 			// choose feature if successful login
-			//to be edited (check for sucessful login)
-			int choice = choose_features_admin();
+			int choice = admin_window();
 			switch (choice){
 				case 1 :
 					//create_new_account();
@@ -221,7 +220,7 @@ void input_guardian_id(char* guardian_id){
 }
 
 
-int choose_features_admin(void){
+int admin_window(void){
 	/*
 	INPUT : void
 	OUTPUT : 1 : create new account 
