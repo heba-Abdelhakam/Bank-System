@@ -363,8 +363,9 @@ void Generate_Pass(int N){
 }
 
 
-int Create_BankID(int bank_id){
+int Create_AccountID(void){
     //printf("%c",bank_id);
+	static int bank_id =1000;
     return bank_id++;
 }
 
@@ -406,9 +407,6 @@ void input_guardian_id(char* guardian_id){
      scanf("%s",guardian_id);
 	 //return guardian_id;
 }
-
-
-
 
 int check_valid_id(char* id){ 
 	/* the input is a pointer to the string
