@@ -23,7 +23,7 @@ typedef struct client{
     char NationalID[MAX_SIZE];
 	char guardian_id[MAX_SIZE];
 	char guardian[MAX_SIZE];
-    int Age;
+    int birth_year;
     int CountID;
 	char password[MAX_SIZE];
 	char status[MAX_SIZE];
@@ -38,7 +38,8 @@ void gotoxy(int x, int y);
 void welcome_screen(void);
 void Admin();
 void User();
-void LoginAdmin(char* username, char* password);
+int client_window(void);
+int LoginAdmin(char* username, char* password);
 void Generate_Pass(int N);
 int Create_BankID(int bank_id);
 int Calc_Age(int birth_year);

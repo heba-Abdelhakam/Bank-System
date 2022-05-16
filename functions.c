@@ -18,16 +18,20 @@ void gotoxy(int x, int y){
 }
 
 void welcome_screen(void){
+	/* 
+	INPUT : void
+	OUTPUT: void 
+	FUNCTION:  navigates you to admin or user screen
+	NOTES:
+	*/
 	
     system("cls");
-    //SetConsoleCursorPosition(38,2);
-    //clrscr();
     
     gotoxy(40, 2);
     printf("... Welcome in Our Bank System ...");
     
     gotoxy(45, 3);
-    printf("\n  \t\t\t\t\t\t 1. Admin Window \n \t\t\t\t\t\t 2. User Window");    
+    printf("\n  \t\t\t\t\t\t 1. Admin Window \n \t\t\t\t\t\t 2. User Window \n \t\t\t\t\t\t 3. close the system");    
 
 
 	char option;
@@ -38,17 +42,18 @@ void welcome_screen(void){
     {
         case '1':
             Admin();
-            //system("cls");
-			// if choice == 3 : return 0 
-           
-			
             break;
+			
         case '2':
             User();
+			//if returned 0 then exit else : welcome screen again
             break;
 			
+		case '3':
+			return ; // to exit the system
+			
 		 default : 
-			printf("you must choose 1 or 2 ok?");
+			printf("you must choose 1 or 2 or 3 ok?");
 			getch();
 			welcome_screen();
 			
@@ -69,67 +74,234 @@ void Admin(){
     gotoxy(44, 4);
     printf("-----------------------------");
 	
-	   //system("cls");
-            gotoxy(44, 7);
-            printf(".Enter your username:\t"); 
-            scanf("%s",&username); 
-            
-            gotoxy(44, 9);
-            printf(".Enter your password:\t"); 
-            scanf("%s",&password); // the same as password (without &) 
-			
-			//printf("*username = %c",*username);
-			//printf("&username = %x",&username);
-			//printf("username = %s",username);
-            LoginAdmin(username, password);
-			
-			// choose feature if successful login
-			int choice = admin_window();
-			//return choice
-			switch (choice){
-				case 1 :
-					//create_new_account();
-					break ;
-				case 2 :
-					//open_existing_account();
-					break;
-					
-				case 3 :
-					//return 3;
-					break;
+	gotoxy(44, 7);
+	printf(".Enter your username:\t"); 
+	scanf("%s",&username); 
 	
+	gotoxy(44, 9);
+	printf(".Enter your password:\t"); 
+	scanf("%s",&password); // the same as password (without &) 
+	
+	//printf("*username = %c",*username);
+	//printf("&username = %x",&username);
+	//printf("username = %s",username);
+	int success_login = LoginAdmin(username, password);
+	
+	
+	// choose feature if successful login
+	int flag = 0;
+	while (flag == 0){
+		int choice = admin_window();
+		//return choice
+		switch (choice){
+			case 1 :
+				//create_new_account();
+				flag =1;
+				break ;
+			case 2 :
+				//open_existing_account();
+				flag = 1;
+				break;
+				
+			case 3 :
+				//return ; // exit the system
+				welcome_screen();
+				flag =1;
+				//return 0
+				
+			default :
+				printf("you must choose 1,2 or 3 ok?");
+				getch();
+				//system("cls");
+				//no change in the flag (loop)
+			}
 	}
 }
 
-void User(){
-    //system("cls");
-    printf("\nWelcome in User Window\n");
+int admin_window(void){
+	/*
+	INPUT : void
+	OUTPUT : 1 : create new account 
+			 2 : open existing account
+			 3 : exit the  system
+			 else : to be handeled when calling the function (wrong input)
+			 
+	FUNCITON : to know whcich function the admin want to choose
+	
+	*/
+	system("cls");
+	printf("\n");
+    gotoxy(44, 3);
+    printf("~~ Welcome in Admin Window ~~");
+    gotoxy(44, 4);
+    printf("-----------------------------");
+	printf("\nchoose the function: \n");
+	printf("1. create new account\n");
+	printf("2. open existing account\n");
+	printf("3. exit the  system\n");
+	int x = 0;
+	printf("enter a number ");
+	scanf("%d",&x);
+	return x;
 }
 
+
+void User(){
+    system("cls");
+	printf("\n");
+    gotoxy(44, 3);
+    printf("~~ Welcome in Client Window ~~");
+    gotoxy(44, 4);
+    printf("-----------------------------");
+	printf("\nenter account ID ");
+	int account_id;
+	char password[MAX_SIZE];
+	scanf("%d",&account_id);
+	printf("enter account password ");
+	scanf("%s",password);
+	//client_login();
+	
+	int flag = 0;
+	while (flag ==0){
+		int choice = client_window();
+		switch (choice){
+					case 1 :
+						//make transaction ();
+						flag = 1;
+						break ;
+					case 2 :
+						//ochange account password();
+						flag = 1;
+						break;
+						
+					case 3 :
+						//get cache
+						flag = 1;
+						break;
+						
+					case 4 :
+						//deposite in account
+						flag = 1;
+						break;
+						
+					case 5 :
+						// exit the system
+						flag = 1;
+						welcome_screen();
+						//return;
+						
+						
+					default :
+						printf("you must choose 1,2,3,4 or 5 ok?");
+						getch();
+		
+		}
+	}
+
+}
+
+int client_window(void){
+	/*
+	INPUT : void
+	OUTPUT : 1 : make transaction 
+			 2 : change account password
+			 3 : get cache
+			 4 : deposite in account
+			 5 : exit the system
+			 else : to be handeled when calling the function (wrong input)
+			 
+	FUNCITON : to know whcich function the client want to choose
+	NOTES : the function choice to be handled in the caller side
+	
+	*/
+	system("cls");
+	printf("\n");
+    gotoxy(44, 3);
+    printf("~~ Welcome in Admin Window ~~");
+    gotoxy(44, 4);
+    printf("-----------------------------");
+	printf("\nchoose the function: \n");
+	printf("1. make transaction\n");
+	printf("2. change account password\n");
+	printf("3. get cache\n");
+	printf("4. deposite in account\n");
+	printf("5. exit the system\n");
+
+	int x = 0;
+	printf("enter a number ");
+	scanf("%d",&x);
+	return x;
+}
+
+
                     // LOGIN Function //
-void LoginAdmin(char* username, char* password){ 
+int LoginAdmin(char* username, char* password){ 
+	/*
+	INPUT : two strings (user name , passwrd)
+	OUTPUT : 1 : successful login
+			 0 : un successful login 
+			 
+	FUNCITON : to check on the user name and password given
+				and let the user try again if they are wrong 
+	
+	*/
 
     if((strcmp(username,"Heba")==0) ) //check name if right 
     { 
         // check password
         if(strcmp(password,"123")==0)
         { 
-	//return 1 //valid
-        printf("\nWelcome.Login Success!"); 
+	
+        printf("\nWelcome.Login Success!\n");
+		return 1 ;//valid		
         }
         else{ 
-		//return 0 // not valid
-        printf("\nwrong password");
-        } 
-    }
+			int flag = 0;
+			char answer = 'a';
+			while (flag == 0){
+				printf("\nwrong password Try again?y/n ");
+				answer = getch();
+				//scanf("%c",&answer); //scanf stores all the entered values till the enter button
+				if (answer == 'y' || answer == 'Y') {
+					flag = 1;
+					printf("\nenter password again: ");
+					scanf("%s",password);
+					LoginAdmin(username,password);
+				}
+				else if (answer == 'n' || answer == 'N')
+					return 0; // not valid
+			
+				else
+					printf("\ninvalid answer \n");
+			}
+		}
+	}
     // If name wasn't right
     else
     { 
-		//return 0 //not valid
-        printf("\nUser doesn't exist"); 
+		 
+		int flag = 0;
+		char answer = 'a';
+		while (flag == 0){
+			printf("\nUser doesn't exist Try again? y/n ");
+			answer = getch();
+			if (answer == 'y' || answer == 'Y') {
+				flag = 1;
+				printf("\nenter user name again: ");
+				scanf("%s",username);
+				LoginAdmin(username,password);
+			}
+			else if (answer == 'n' || answer == 'N')
+				return 0; // not valid
+		
+			else
+				printf("\ninvalid answer \n");
+		}
+			
+        
     }
     
-} 
+}
 
 
                 // Generate Password //
@@ -236,27 +408,7 @@ void input_guardian_id(char* guardian_id){
 }
 
 
-int admin_window(void){
-	/*
-	INPUT : void
-	OUTPUT : 1 : create new account 
-			 2 : open existing account
-			 3 : exit the  system
-			 else : to be handeled when calling the function (wrong input)
-			 
-	FUNCITON : to know whcich function the admin want to choose
-	
-	*/
-	
-	printf("choose the function: \n");
-	printf("1. create new account\n");
-	printf("2. open existing account\n");
-	printf("3. exit the  system\n");
-	int x = 0;
-	printf("enter a number ");
-	scanf("%d",&x);
-	return x;
-}
+
 
 int check_valid_id(char* id){ 
 	/* the input is a pointer to the string
