@@ -39,12 +39,20 @@ void welcome_screen(void){
         case '1':
             Admin();
             //system("cls");
+			// if choice == 3 : return 0 
            
 			
             break;
         case '2':
             User();
             break;
+			
+		 default : 
+			printf("you must choose 1 or 2 ok?");
+			getch();
+			welcome_screen();
+			
+		
     }
 	
 	
@@ -72,15 +80,23 @@ void Admin(){
 			
 			//printf("*username = %c",*username);
 			//printf("&username = %x",&username);
-			//printf("username = %x",username);
+			//printf("username = %s",username);
             LoginAdmin(username, password);
 			
 			// choose feature if successful login
 			int choice = admin_window();
+			//return choice
 			switch (choice){
 				case 1 :
 					//create_new_account();
 					break ;
+				case 2 :
+					//open_existing_account();
+					break;
+					
+				case 3 :
+					//return 3;
+					break;
 	
 	}
 }
@@ -93,7 +109,7 @@ void User(){
                     // LOGIN Function //
 void LoginAdmin(char* username, char* password){ 
 
-    if(strcmp(username,"Heba")==0) //check name if right 
+    if((strcmp(username,"Heba")==0) ) //check name if right 
     { 
         // check password
         if(strcmp(password,"123")==0)

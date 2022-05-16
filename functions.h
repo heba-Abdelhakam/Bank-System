@@ -22,9 +22,12 @@ typedef struct client{
     char Address[MAX_SIZE];
     char NationalID[MAX_SIZE];
 	char guardian_id[MAX_SIZE];
+	char guardian[MAX_SIZE];
     int Age;
     int CountID;
 	char password[MAX_SIZE];
+	char status[MAX_SIZE];
+	int balance;
 	
 
 }Client;

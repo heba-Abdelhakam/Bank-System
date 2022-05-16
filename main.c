@@ -37,6 +37,7 @@ int main()
 
 
 	welcome_screen();
+	//if choice == 3 return 0;
     // Test Calc. AGE //
     printf("\n Test Age Function \n");
     int birth_year, age;
